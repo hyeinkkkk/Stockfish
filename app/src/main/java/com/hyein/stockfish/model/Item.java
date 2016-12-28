@@ -1,11 +1,15 @@
 package com.hyein.stockfish.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by nolgong-hyein on 2016. 12. 23..
  */
 
 public class Item {
     String name;
+
+    @SerializedName("file_name")
     String fileName;
     int id;
 
