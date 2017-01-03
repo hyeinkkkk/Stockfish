@@ -1,11 +1,13 @@
 package com.hyein.stockfish;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.TextView;
 
@@ -52,16 +54,31 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-//        Item[] arr = {new Item("건새우"),new Item("건오징어"),new Item("황태.북어 류"),
-//                new Item("노가리"),new Item("쥐포"),new Item("건조개")};
-//        items = new ArrayList<>(Arrays.asList(arr));
-
     }
 
-    public void setItems(ArrayList<Item> items){
-        ItemAdapter itemAdapter = new ItemAdapter(getApplicationContext(), R.layout.cell_item, items);
+    public void setItems(final ArrayList<Item> items){
+        TextView textView = (TextView)findViewById(R.id.noItemTextView);
         gridView = (GridView)findViewById(R.id.detailGridView);
-        gridView.setAdapter(itemAdapter);
+
+        if(items.size() == 0){
+            textView.setVisibility(View.VISIBLE);
+            gridView.setVisibility(View.GONE);
+        }else{
+            gridView.setVisibility(View.VISIBLE);
+            textView.setVisibility(View.GONE);
+
+            ItemAdapter itemAdapter = new ItemAdapter(getApplicationContext(), R.layout.cell_item, items);
+            gridView.setAdapter(itemAdapter);
+            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    Log.e("INFO", "click했다.. "+ items.get(i).getId());
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    DetailDialog dialog = DetailDialog.newInstance(items.get(i).getFileName());
+                    dialog.show(ft, "detail");
+                }
+            });
+        }
     }
 
     public void detailCalling(View view){

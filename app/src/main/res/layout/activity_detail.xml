@@ -8,7 +8,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.hyein.stockfish.DetailActivity">
+    tools:context="com.hyein.stockfish.DetailActivity"
+    android:background="@drawable/background_gradient">
 
     <TextView
         android:text="TextView"
@@ -16,10 +17,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:id="@+id/detailCategoryTextView"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:textColor="#0b98d4"
+        android:typeface="sans" />
 
     <GridView
         android:layout_width="match_parent"
@@ -33,13 +36,25 @@
         android:layout_above="@+id/button" />
 
     <Button
-        android:text="전화 걸기"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:id="@+id/button"
         android:layout_alignParentTop="false"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
-        android:onClick="detailCalling" />
+        android:onClick="detailCalling"
+        android:background="@drawable/call_target" />
+
+    <TextView
+        android:text="상품 준비중입니다."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="178dp"
+        android:id="@+id/noItemTextView"
+        android:textSize="20sp"
+        android:layout_below="@+id/detailCategoryTextView"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/colorPrimary"
+        android:visibility="gone" />
 </RelativeLayout>

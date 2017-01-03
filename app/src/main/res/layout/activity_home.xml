@@ -5,29 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingBottom="10dp"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.hyein.stockfish.HomeActivity">
+    tools:context="com.hyein.stockfish.HomeActivity"
+    android:background="@drawable/background_gradient">
 
-    <Button
-        android:text="전화 걸기"
+    <TextView
+        android:text="건어물 도매"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:id="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:typeface="sans"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        android:background="@color/colorPrimary"
+        android:layout_alignParentEnd="true"
+        android:padding="15dp"
+        android:textColor="@android:color/white"
+        android:gravity="center" />
+
+    <Button
+        android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
         android:id="@+id/button2"
         android:layout_alignParentEnd="true"
         android:layout_alignParentStart="true"
-        android:onClick="homeCalling" />
+        android:onClick="homeCalling"
+        android:background="@drawable/call_target"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_height="60dp" />
 
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="19dp"
         android:layout_above="@+id/button2"
         android:id="@+id/categoryListView"
         android:divider="@android:color/transparent"
-        android:dividerHeight="10dp" />
+        android:dividerHeight="10dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_below="@+id/textView"
+        android:layout_marginTop="20dp"
+        android:paddingBottom="15dp" />
+
 </RelativeLayout>

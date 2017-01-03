@@ -2,6 +2,7 @@ package com.hyein.stockfish;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.multidex.MultiDex;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,10 +10,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.gson.JsonObject;
 import com.hyein.stockfish.adapter.CategoryNameAdapter;
 import com.hyein.stockfish.model.Category;
 import com.hyein.stockfish.network.HttpClient;
+import com.hyein.stockfish.notifiactation.InstanceIDService;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,12 +25,16 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
-//    ArrayList<Category> categorys;
+
     ListView listView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        MultiDex.install(getApplicationContext());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        Log.e("CHECK ","s??" + GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this));
+
         listView = (ListView)findViewById(R.id.categoryListView);
 
         HttpClient client = HttpClient.getInstance();
@@ -44,11 +51,6 @@ public class HomeActivity extends AppCompatActivity {
                 Log.e("INFO","fail ???? "+ t.getMessage());
             }
         });
-
-//        Category[] arr = {new Category(1,"건새우"),new Category(2,"건오징어"),new Category(3,"황태.북어 류"),
-//                new Category(4,"노가리"),new Category(5,"쥐포"),new Category(6,"건조개"),new Category(7,"기타")};
-//        categorys = new ArrayList<>(Arrays.asList(arr));
-
 
     }
 

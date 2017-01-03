@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "627008300247",
+    "firebase_url": "https://stockfish-633d5.firebaseio.com",
+    "project_id": "stockfish-633d5",
+    "storage_bucket": "stockfish-633d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:627008300247:android:881a91345c5e8dcb",
+        "android_client_info": {
+          "package_name": "com.hyein.stockfish"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "627008300247-4jfepgav92pm8mk3h9t9a678tlgtb6q4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDZxZ2Y8NiydDYkU_kRzAzaP74b9KvbKls"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
