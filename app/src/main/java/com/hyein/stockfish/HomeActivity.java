@@ -1,8 +1,13 @@
 package com.hyein.stockfish;
 
+import android.*;
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.multidex.MultiDex;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class HomeActivity extends AppCompatActivity {
+    public static final int REQUEST_ID_PERMISSION = 1;
 
     ListView listView;
     @Override
@@ -33,7 +39,11 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        Log.e("CHECK ","s??" + GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(this));
+        int callPermission = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE);
+        if(callPermission != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE},
+                    REQUEST_ID_PERMISSION);
+        }
 
         listView = (ListView)findViewById(R.id.categoryListView);
 
@@ -72,8 +82,8 @@ public class HomeActivity extends AppCompatActivity {
 
     public void homeCalling(View view){
         Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse("tel:01050941537"));
-//        intent.setData(Uri.parse("tel:01041619690"));
+//        intent.setData(Uri.parse("tel:01050941537"));
+        intent.setData(Uri.parse("tel:01041619690"));
         try{
             startActivity(intent);
         }catch (Exception e){

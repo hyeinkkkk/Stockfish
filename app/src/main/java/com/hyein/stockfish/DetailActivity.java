@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.hyein.stockfish.adapter.ItemAdapter;
@@ -26,6 +27,7 @@ public class DetailActivity extends AppCompatActivity {
     int categoryId;
     String categoryName;
     GridView gridView;
+    ImageButton imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,16 @@ public class DetailActivity extends AppCompatActivity {
 
         TextView nameTextView = (TextView)findViewById(R.id.detailCategoryTextView);
         nameTextView.setText(categoryName);
+
+        imageButton = (ImageButton) findViewById(R.id.detailBackImageButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+//                Intent beforeIntent = new Intent(DetailActivity.this, HomeActivity.class);
+//                startActivity(beforeIntent);
+            }
+        });
 
         HttpClient client = HttpClient.getInstance();
         client.getCategoryItems(categoryId, new Callback<ArrayList<Item>>() {
@@ -83,8 +95,8 @@ public class DetailActivity extends AppCompatActivity {
 
     public void detailCalling(View view){
         Intent intent = new Intent(Intent.ACTION_CALL);
-        intent.setData(Uri.parse("tel:01050941537"));
-//        intent.setData(Uri.parse("tel:01041619690"));
+//        intent.setData(Uri.parse("tel:01050941537"));
+        intent.setData(Uri.parse("tel:01041619690"));
         try{
             startActivity(intent);
         }catch (Exception e){
