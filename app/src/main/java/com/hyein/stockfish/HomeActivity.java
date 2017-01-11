@@ -7,13 +7,16 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.multidex.MultiDex;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.gson.JsonObject;
@@ -33,6 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     public static final int REQUEST_ID_PERMISSION = 1;
 
     ListView listView;
+    TextView noCategoryTextView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         MultiDex.install(getApplicationContext());
@@ -46,12 +50,15 @@ public class HomeActivity extends AppCompatActivity {
         }
 
         listView = (ListView)findViewById(R.id.categoryListView);
+        noCategoryTextView = (TextView)findViewById(R.id.noCategoryTextView);
 
         HttpClient client = HttpClient.getInstance();
         client.getCategories(new Callback<ArrayList<Category>>() {
             @Override
             public void onResponse(Call<ArrayList<Category>> call, Response<ArrayList<Category>> response) {
                 Log.e("INFO","resoponse???? "+ response.body());
+                noCategoryTextView.setVisibility(View.GONE);
+                listView.setVisibility(View.VISIBLE);
                 setCategories(response.body());
 
             }
@@ -65,6 +72,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     public void setCategories(final ArrayList<Category> categorys){
+        if(categorys.size() == 0){
+            noCategoryTextView.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+        }
         CategoryNameAdapter categoryNameAdapter = new CategoryNameAdapter(getApplicationContext(), R.layout.cell_category, categorys);
         listView.setAdapter(categoryNameAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

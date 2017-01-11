@@ -48,6 +48,16 @@
         android:layout_marginRight="16dp"
         android:layout_below="@+id/textView"
         android:layout_marginTop="20dp"
-        android:paddingBottom="15dp" />
+        android:paddingBottom="15dp"
+        android:visibility="gone" />
+
+    <TextView
+        android:text="모바일 네트워크를 확인해주세요.\n비활성화 되어있다면 켜주시기 바랍니다"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/noCategoryTextView"
+        android:gravity="center" />
 
 </RelativeLayout>
